@@ -161,7 +161,7 @@ if uploaded_file is not None:
         Davies Bouldin Index (DBI) : semakin mendekati 0, maka semakin baik hasil klasterisasi.
         """)
 
-        # Results
+        # Rekomendasi
         st.subheader("Rekomendasi")
         st.markdown("""
         Cluster 0 (Kurang Laris): Cluster ini memiliki rata-rata penjualan berada di tengah, yaitu 367 item dengan harga pembelian dan penjualan yang relatif rendah dibandingkan cluster lainnya. Cluster ini berisi produk dengan permintaan stabil tetapi tidak terlalu besar. Strategi yang dapat diambil yaitu mempertahankan jumlah stok yang cukup untuk menghindari kekurangan stok, tetapi tetap perlu memonitor permintaan secara berkala. Sebaiknya melakukan pengadaan dalam jumlah sedang.
@@ -173,6 +173,13 @@ if uploaded_file is not None:
         Cluster 3 (Sangat Kurang Laris): Cluster ini memiliki rata-rata penjualan sangat rendah (5,12 item), namun harga beli dan jual sangat tinggi. Cluster ini berisi produk eksklusif atau dengan harga sangat tinggi, tetapi permintaan sangat terbatas. Produk ini cenderung dijual dalam jumlah kecil, mungkin untuk kategori alkes yang sangat spesifik. Rumah Sakit dapat melakukan pengadaan stok dalam jumlah kecil saja, karena permintaan rendah dan produk ini bisa menyebabkan stok menumpuk jika dibeli dalam jumlah besar. Produk dalam cluster ini hanya dibeli sesuai permintaan, lakukan evaluasi berkala untuk menghindari penyimpanan berlebihan dan tetap sediakan stok minimum untuk kebutuhan khusus.
         
         Cluster 4 (Sangat Laris): Rata-rata penjualan terbesar (27.208 item), namun harga beli dan jual sangat rendah. Produk ini memiliki kuantitas penjualan yang sangat besar, meskipun margin keuntungan per unit kecil. Produk ini mungkin merupakan barang-barang kebutuhan dasar yang dijual dalam volume besar sehingga stok dalam jumlah sangat besar harus dipersiapkan karena perputaran produk sangat cepat. Produk ini harus selalu tersedia untuk memenuhi kebutuhan tinggi. Rumah Sakit perlu melakukan pengadaan dalam volume besar dengan negosiasi harga rendah dari pemasok sangat penting untuk mengoptimalkan keuntungan.
+        """)
+
+        # Saran
+        st.subheader("Saran")
+        st.markdown("""
+        Hasil analisis dan visualisasi ini berdasarkan dataset transaksi bulan Januari-Desember 2024.
+        Jika terdapat perubahan data, maka analisis dan visualisasi akan berubah juga.
         """)
 
 
