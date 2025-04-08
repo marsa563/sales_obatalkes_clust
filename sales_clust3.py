@@ -81,6 +81,11 @@ if uploaded_file is not None:
         ax.set_xlabel("Number of Clusters (K)")
         ax.set_ylabel("SSE")
         st.pyplot(fig)
+        st.markdown("""
+        Elbow Method digunakan untuk membantu menentukan jumlah cluster optimal. 
+        
+        Berdasarkan grafik diatas, jumlah cluster optimal adalah 5 cluster.
+        """)
 
         # Select K
         st.sidebar.subheader("Select Number of Clusters")
@@ -107,6 +112,13 @@ if uploaded_file is not None:
         ax.set_xlabel("Cluster")
         ax.set_ylabel("Number of Items")
         st.pyplot(fig)
+        st.markdown("""
+        Cluster 1 mendominasi dengan persentase 75.63%, menunjukkan bahwa sebagian besar item memiliki karakteristik yang sama pada kluster ini. 
+        
+        Cluster 0 berada di urutan kedua dengan 23.41%, juga memiliki kontribusi yang signifikan. 
+        
+        Cluster 2, 3, dan 4 hanya mencakup persentase kecil, masing-masing 0.17%, 0.28%, dan 0.51%, menunjukkan bahwa hanya sedikit item yang termasuk dalam kluster-kluster ini.
+        """)
 
         # PCA Visualization
         st.subheader("Cluster Visualization")
@@ -141,14 +153,23 @@ if uploaded_file is not None:
         db_index = davies_bouldin_score(X_scaled, df_grouped["Cluster"])
         st.write(f"Silhouette Score (higher is better): **{silhouette:.2f}**")
         st.write(f"Davies-Bouldin Index (lower is better): **{db_index:.2f}**")
+        st.markdown("""
+        Silhouette Index (SI) : semakin mendekati 1, maka semakin baik hasil klasterisasi. 
+        
+        Davies Bouldin Index (DBI) : semakin mendekati 0, maka semakin baik hasil klasterisasi.
+        """)
 
         # Results
         st.subheader("Rekomendasi")
         st.markdown("""
         Cluster 0 (Kurang Laris): Cluster ini memiliki rata-rata penjualan berada di tengah, yaitu 367 item dengan harga pembelian dan penjualan yang relatif rendah dibandingkan cluster lainnya. Cluster ini berisi produk dengan permintaan stabil tetapi tidak terlalu besar. Strategi yang dapat diambil yaitu mempertahankan jumlah stok yang cukup untuk menghindari kekurangan stok, tetapi tetap perlu memonitor permintaan secara berkala. Sebaiknya melakukan pengadaan dalam jumlah sedang.
+        
         Cluster 1 (Cukup Laris): Cluster ini memiliki rata-rata penjualan yang lebih tinggi (638 item) dengan harga jual dan beli yang lebih rendah, menunjukkan produk ini terjual dengan cepat dan dalam jumlah besar. Produk-produk ini biasanya dibeli dalam jumlah besar tetapi dengan harga yang lebih terjangkau. Rumah Sakit dapat memprioritaskan dalam pengadaan stok agar tidak terjadi kekosongan barang, karena kuantitas penjualan yang tinggi menunjukkan permintaan yang besar. Stok dalam jumlah besar perlu dipersiapkan untuk memenuhi permintaan pasar yang cepat.
+        
         Cluster 2 (Laris): Cluster ini memiliki rata-rata penjualan tertinggi kedua setelah cluster 4 (1.548 item) dan harga beli serta jual yang juga tinggi. Produk dalam cluster ini memiliki permintaan tinggi dan margin keuntungan yang besar. Pengadaan produk dalam jumlah penjualan besar harus diprioritaskan dan stok harus selalu tersedia karena produk ini merupakan penyumbang utama penjualan. Rumah Sakit dapat melakukan pengadaan dalam jumlah besar secara berkala, tetapi pastikan untuk memantau tren penjualan guna mencegah overstock.
+        
         Cluster 3 (Sangat Kurang Laris): Cluster ini memiliki rata-rata penjualan sangat rendah (5,12 item), namun harga beli dan jual sangat tinggi. Cluster ini berisi produk eksklusif atau dengan harga sangat tinggi, tetapi permintaan sangat terbatas. Produk ini cenderung dijual dalam jumlah kecil, mungkin untuk kategori alkes yang sangat spesifik. Rumah Sakit dapat melakukan pengadaan stok dalam jumlah kecil saja, karena permintaan rendah dan produk ini bisa menyebabkan stok menumpuk jika dibeli dalam jumlah besar. Produk dalam cluster ini hanya dibeli sesuai permintaan, lakukan evaluasi berkala untuk menghindari penyimpanan berlebihan dan tetap sediakan stok minimum untuk kebutuhan khusus.
+        
         Cluster 4 (Sangat Laris): Rata-rata penjualan terbesar (27.208 item), namun harga beli dan jual sangat rendah. Produk ini memiliki kuantitas penjualan yang sangat besar, meskipun margin keuntungan per unit kecil. Produk ini mungkin merupakan barang-barang kebutuhan dasar yang dijual dalam volume besar sehingga stok dalam jumlah sangat besar harus dipersiapkan karena perputaran produk sangat cepat. Produk ini harus selalu tersedia untuk memenuhi kebutuhan tinggi. Rumah Sakit perlu melakukan pengadaan dalam volume besar dengan negosiasi harga rendah dari pemasok sangat penting untuk mengoptimalkan keuntungan.
         """)
 
