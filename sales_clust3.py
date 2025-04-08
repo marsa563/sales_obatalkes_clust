@@ -10,7 +10,7 @@ from sklearn.preprocessing import StandardScaler, LabelEncoder
 from sklearn.metrics import silhouette_score, davies_bouldin_score
 from sklearn.decomposition import PCA
 
-st.title("Analisis Segmentasi Penjualan dan Alat Kesehatan Untuk Optimalisasi Pengadaan Stok")
+st.title("Analisis Segmentasi Penjualan Obat dan Alat Kesehatan Untuk Optimalisasi Pengadaan Stok")
 
 # Upload Dataset
 st.sidebar.header("Upload your dataset")
