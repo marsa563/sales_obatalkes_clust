@@ -154,6 +154,8 @@ if uploaded_file is not None:
         st.write(f"Silhouette Score (higher is better): **{silhouette:.2f}**")
         st.write(f"Davies-Bouldin Index (lower is better): **{db_index:.2f}**")
         st.markdown("""
+        Keterangan:
+        
         Silhouette Index (SI) : semakin mendekati 1, maka semakin baik hasil klasterisasi. 
         
         Davies Bouldin Index (DBI) : semakin mendekati 0, maka semakin baik hasil klasterisasi.
