@@ -10,7 +10,7 @@ from sklearn.preprocessing import StandardScaler, LabelEncoder
 from sklearn.metrics import silhouette_score, davies_bouldin_score
 from sklearn.decomposition import PCA
 
-st.title("K-Means Clustering Dashboard")
+st.title("Analisis Segmentasi Penjualan dan Alat Kesehatan Untuk Optimalisasi Pengadaan Stok")
 
 # Upload Dataset
 st.sidebar.header("Upload your dataset")
@@ -141,6 +141,17 @@ if uploaded_file is not None:
         db_index = davies_bouldin_score(X_scaled, df_grouped["Cluster"])
         st.write(f"Silhouette Score (higher is better): **{silhouette:.2f}**")
         st.write(f"Davies-Bouldin Index (lower is better): **{db_index:.2f}**")
+
+        # Results
+        st.subheader("Rekomendasi")
+        st.markdown("""
+        Cluster 0 (Kurang Laris): Cluster ini memiliki rata-rata penjualan berada di tengah, yaitu 367 item dengan harga pembelian dan penjualan yang relatif rendah dibandingkan cluster lainnya. Cluster ini berisi produk dengan permintaan stabil tetapi tidak terlalu besar. Strategi yang dapat diambil yaitu mempertahankan jumlah stok yang cukup untuk menghindari kekurangan stok, tetapi tetap perlu memonitor permintaan secara berkala. Sebaiknya melakukan pengadaan dalam jumlah sedang.
+        Cluster 1 (Cukup Laris): Cluster ini memiliki rata-rata penjualan yang lebih tinggi (638 item) dengan harga jual dan beli yang lebih rendah, menunjukkan produk ini terjual dengan cepat dan dalam jumlah besar. Produk-produk ini biasanya dibeli dalam jumlah besar tetapi dengan harga yang lebih terjangkau. Rumah Sakit dapat memprioritaskan dalam pengadaan stok agar tidak terjadi kekosongan barang, karena kuantitas penjualan yang tinggi menunjukkan permintaan yang besar. Stok dalam jumlah besar perlu dipersiapkan untuk memenuhi permintaan pasar yang cepat.
+        Cluster 2 (Laris): Cluster ini memiliki rata-rata penjualan tertinggi kedua setelah cluster 4 (1.548 item) dan harga beli serta jual yang juga tinggi. Produk dalam cluster ini memiliki permintaan tinggi dan margin keuntungan yang besar. Pengadaan produk dalam jumlah penjualan besar harus diprioritaskan dan stok harus selalu tersedia karena produk ini merupakan penyumbang utama penjualan. Rumah Sakit dapat melakukan pengadaan dalam jumlah besar secara berkala, tetapi pastikan untuk memantau tren penjualan guna mencegah overstock.
+        Cluster 3 (Sangat Kurang Laris): Cluster ini memiliki rata-rata penjualan sangat rendah (5,12 item), namun harga beli dan jual sangat tinggi. Cluster ini berisi produk eksklusif atau dengan harga sangat tinggi, tetapi permintaan sangat terbatas. Produk ini cenderung dijual dalam jumlah kecil, mungkin untuk kategori alkes yang sangat spesifik. Rumah Sakit dapat melakukan pengadaan stok dalam jumlah kecil saja, karena permintaan rendah dan produk ini bisa menyebabkan stok menumpuk jika dibeli dalam jumlah besar. Produk dalam cluster ini hanya dibeli sesuai permintaan, lakukan evaluasi berkala untuk menghindari penyimpanan berlebihan dan tetap sediakan stok minimum untuk kebutuhan khusus.
+        Cluster 4 (Sangat Laris): Rata-rata penjualan terbesar (27.208 item), namun harga beli dan jual sangat rendah. Produk ini memiliki kuantitas penjualan yang sangat besar, meskipun margin keuntungan per unit kecil. Produk ini mungkin merupakan barang-barang kebutuhan dasar yang dijual dalam volume besar sehingga stok dalam jumlah sangat besar harus dipersiapkan karena perputaran produk sangat cepat. Produk ini harus selalu tersedia untuk memenuhi kebutuhan tinggi. Rumah Sakit perlu melakukan pengadaan dalam volume besar dengan negosiasi harga rendah dari pemasok sangat penting untuk mengoptimalkan keuntungan.
+        """)
+
 
     except Exception as e:
         st.error(f"❌ Terjadi kesalahan saat membaca file: {e}")
