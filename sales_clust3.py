@@ -145,7 +145,9 @@ if uploaded_file is not None:
         st.subheader("Cluster Statistics")
         for i in range(optimal_k):
             st.write(f"📊 Cluster {i} Statistics")
-            st.dataframe(df_grouped[df_grouped["Cluster"] == i].describe())
+            cluster_stats = df_grouped[df_grouped["Cluster"] == i].describe()
+            cluster_stats = cluster_stats.drop(columns=["Category"], errors="ignore")
+            st.dataframe(cluster_stats)
 
         # Evaluation
         st.subheader("Clustering Evaluation Metrics")
